@@ -67,8 +67,6 @@ let with_ctrl ctrl ~st ~fn =
   match ctrl with
   | Vernacexpr.ControlTime ->
     pmeasure System.(measure_duration, fmt_transaction_result) fn
-  | Vernacexpr.ControlInstructions ->
-    pmeasure System.(count_instructions, fmt_instructions_result) fn
   | Vernacexpr.ControlTimeout n -> (
     match Control.timeout (float_of_int n) fn () with
     | None -> Exninfo.iraise (Exninfo.capture CErrors.Timeout)
